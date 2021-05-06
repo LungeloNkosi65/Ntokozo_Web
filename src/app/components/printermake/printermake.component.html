@@ -1,0 +1,86 @@
+<div class="container odds-container">
+    <div class="row mt-2">
+        <div class="col-md-12">
+
+            <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modelId">
+                Add Printer Make
+              </button>
+
+              <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Printer Make</h5>
+
+                            <ng-template [ngIf]="makeUpdate==null">
+                                <h5 class="modal-title">Add Printer Make</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" click()="setaHeading()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </ng-template>
+
+                            <ng-template [ngIf]="makeUpdate!=null">
+                                <h5 class="modal-title">Update Printer Make</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" click()="setaHeading()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </ng-template>
+                         
+                        </div>
+                        <div class="modal-body">
+                            <form  [formGroup]="makesForm">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label for="Odds">Printer Make Name </label>
+                                         <!-- <input type="text" placeholder="Country Name" formControlName="CountryName"> -->
+                                    </div>
+                                    <div class="colo-md-8" >
+                                        <input type="text"   class="form-control" id="PrinterMake" placeholder="Printer Make" formControlName="PrinterMake">
+                                   </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-modal-dismis" data-dismiss="modal" (click)="setaHeading()">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onFormSubmit()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <table class="table table-striped">
+                <thead > 
+                    <tr>
+                        <th>Id</th>
+                        <th>Printer Make</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let make of makes">
+                        <td>{{make.makeId}}</td>
+                        <td>{{make.printerMake}}</td>
+                        <td>
+                            <button class="btn btn-danger" (click)="deletMake(make.makeId)">Delete</button>|
+
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modelId" (click)="loadFrom(make.makeId)">Update</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
